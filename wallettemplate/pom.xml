@@ -13,5 +13,39 @@
     <artifactId>wallettemplate</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>software.chronicle.bitCoinj</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>net.glxn.qrgen</groupId>
+            <artifactId>core</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.glxn.qrgen</groupId>
+            <artifactId>javase</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx</artifactId>
+            <version>8.0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>net.glxn</groupId>
+            <artifactId>qrgen</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fxmisc.easybind</groupId>
+            <artifactId>easybind</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+    </dependencies>
 </project>

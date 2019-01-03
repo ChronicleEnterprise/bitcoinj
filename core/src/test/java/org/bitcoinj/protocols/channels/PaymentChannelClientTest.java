@@ -16,30 +16,28 @@
 
 package org.bitcoinj.protocols.channels;
 
-import org.bitcoinj.core.*;
+import org.bitcoin.paymentchannel.Protos;
+import org.bitcoinj.core.Coin;
+import org.bitcoinj.core.ECKey;
+import org.bitcoinj.core.Sha256Hash;
 import org.bitcoinj.wallet.Wallet;
 import org.bitcoinj.wallet.WalletExtension;
-import org.bitcoin.paymentchannel.Protos;
+import org.bouncycastle.crypto.params.KeyParameter;
 import org.easymock.Capture;
 import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.bouncycastle.crypto.params.KeyParameter;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 
 import static org.bitcoin.paymentchannel.Protos.TwoWayChannelMessage;
-import static org.bitcoin.paymentchannel.Protos.TwoWayChannelMessage.MessageType.*;
-import static org.bitcoinj.protocols.channels.PaymentChannelClient.VersionSelector.VERSION_1;
-import static org.bitcoinj.protocols.channels.PaymentChannelClient.VersionSelector.VERSION_2;
-import static org.bitcoinj.protocols.channels.PaymentChannelClient.VersionSelector.VERSION_2_ALLOW_1;
-import static org.easymock.EasyMock.capture;
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.replay;
+import static org.bitcoin.paymentchannel.Protos.TwoWayChannelMessage.MessageType.CLIENT_VERSION;
+import static org.bitcoinj.protocols.channels.PaymentChannelClient.VersionSelector.*;
+import static org.easymock.EasyMock.*;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
@@ -85,7 +83,7 @@ public class PaymentChannelClientTest {
         maxValue = Coin.COIN;
         serverHash = Sha256Hash.of("serverId".getBytes());
         connection = createMock(IPaymentChannelClient.ClientConnection.class);
-        clientVersionCapture = new Capture<>();
+        clientVersionCapture = Capture.newInstance();
     }
 
     @Test

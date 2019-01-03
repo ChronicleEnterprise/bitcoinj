@@ -18,22 +18,22 @@ package org.bitcoinj.protocols.channels;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.util.concurrent.AsyncFunction;
-import org.bitcoinj.core.*;
-import org.bitcoinj.protocols.channels.PaymentChannelCloseException.CloseReason;
-import org.bitcoinj.utils.Threading;
-import org.bitcoinj.wallet.Wallet;
-
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.protobuf.ByteString;
 import net.jcip.annotations.GuardedBy;
 import org.bitcoin.paymentchannel.Protos;
-import org.slf4j.LoggerFactory;
+import org.bitcoinj.core.*;
+import org.bitcoinj.protocols.channels.PaymentChannelCloseException.CloseReason;
+import org.bitcoinj.utils.Threading;
+import org.bitcoinj.wallet.Wallet;
 import org.bouncycastle.crypto.params.KeyParameter;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nullable;
 import java.util.Map;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -457,7 +457,7 @@ public class PaymentChannelServer {
                         log.info("Failed retrieving paymentIncrease info future");
                         error("Failed processing payment update", Protos.Error.ErrorCode.OTHER, CloseReason.UPDATE_PAYMENT_FAILED);
                     }
-                });
+                }, Executors.newSingleThreadExecutor());
             }
         }
 
@@ -561,7 +561,7 @@ public class PaymentChannelServer {
                 public ListenableFuture<Transaction> apply(KeyParameter userKey) throws Exception {
                     return state.close(userKey);
                 }
-            });
+            }, Executors.newSingleThreadExecutor());
         } else {
             result = state.close();
         }
@@ -588,7 +588,7 @@ public class PaymentChannelServer {
                 log.error("Failed to broadcast settlement tx", t);
                 conn.destroyConnection(clientRequestedClose);
             }
-        });
+        }, Executors.newSingleThreadExecutor());
     }
 
     /**

@@ -15,4 +15,18 @@
     <version>1.0.0-SNAPSHOT</version>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>software.chronicle.bitCoinj</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.geode</groupId>
+            <artifactId>geode-joptsimple</artifactId>
+            <version>1.0.0-incubating.M2</version>
+        </dependency>
+
+    </dependencies>
+
 </project>

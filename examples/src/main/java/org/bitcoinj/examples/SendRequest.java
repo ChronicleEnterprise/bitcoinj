@@ -19,13 +19,17 @@ package org.bitcoinj.examples;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import org.bitcoinj.core.*;
+import org.bitcoinj.core.Coin;
+import org.bitcoinj.core.InsufficientMoneyException;
+import org.bitcoinj.core.LegacyAddress;
+import org.bitcoinj.core.NetworkParameters;
 import org.bitcoinj.kits.WalletAppKit;
 import org.bitcoinj.params.TestNet3Params;
 import org.bitcoinj.wallet.Wallet;
 import org.bitcoinj.wallet.Wallet.BalanceType;
 
 import java.io.File;
+import java.util.concurrent.Executors;
 
 /**
  * The following example shows you how to create a SendRequest to send coins from a wallet to a given address.
@@ -80,7 +84,7 @@ public class SendRequest {
                     System.out.println("something went wrong");
                 }
             };
-            Futures.addCallback(balanceFuture, callback);
+            Futures.addCallback(balanceFuture, callback, Executors.newSingleThreadExecutor());
         }
 
         // shutting down 

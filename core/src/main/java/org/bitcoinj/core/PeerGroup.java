@@ -17,30 +17,42 @@
 
 package org.bitcoinj.core;
 
-import com.google.common.annotations.*;
-import com.google.common.base.*;
-import com.google.common.collect.*;
-import com.google.common.primitives.*;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Stopwatch;
+import com.google.common.base.Throwables;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.primitives.Ints;
 import com.google.common.util.concurrent.*;
-import net.jcip.annotations.*;
+import net.jcip.annotations.GuardedBy;
 import org.bitcoinj.core.listeners.*;
-import org.bitcoinj.net.*;
-import org.bitcoinj.net.discovery.*;
-import org.bitcoinj.script.*;
-import org.bitcoinj.utils.*;
+import org.bitcoinj.net.ClientConnectionManager;
+import org.bitcoinj.net.FilterMerger;
+import org.bitcoinj.net.NioClientManager;
+import org.bitcoinj.net.discovery.MultiplexingDiscovery;
+import org.bitcoinj.net.discovery.PeerDiscovery;
+import org.bitcoinj.net.discovery.PeerDiscoveryException;
+import org.bitcoinj.script.Script;
+import org.bitcoinj.script.ScriptPattern;
+import org.bitcoinj.utils.ContextPropagatingThreadFactory;
+import org.bitcoinj.utils.ExponentialBackoff;
+import org.bitcoinj.utils.ListenerRegistration;
 import org.bitcoinj.utils.Threading;
 import org.bitcoinj.wallet.Wallet;
 import org.bitcoinj.wallet.listeners.KeyChainEventListener;
 import org.bitcoinj.wallet.listeners.ScriptsChangeEventListener;
 import org.bitcoinj.wallet.listeners.WalletCoinsReceivedEventListener;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.annotation.*;
-import java.io.*;
+import javax.annotation.Nullable;
+import java.io.IOException;
 import java.net.*;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.concurrent.locks.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static com.google.common.base.Preconditions.*;
 
@@ -2090,7 +2102,7 @@ public class PeerGroup implements TransactionBroadcaster {
                 // This can happen if we get a reject message from a peer.
                 runningBroadcasts.remove(broadcast);
             }
-        });
+        }, Executors.newSingleThreadExecutor());
         // Keep a reference to the TransactionBroadcast object. This is important because otherwise, the entire tree
         // of objects we just created would become garbage if the user doesn't hold on to the returned future, and
         // eventually be collected. This in turn could result in the transaction not being committed to the wallet

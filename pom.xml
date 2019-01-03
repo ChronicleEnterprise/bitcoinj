@@ -47,11 +47,18 @@
             </dependency>
 
             <dependency>
-                <groupId>software.chronicle.exchange</groupId>
+                <groupId>software.chronicle.bitCoinj</groupId>
                 <artifactId>core</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.jwebmp.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>0.63.0.19</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <!-- PLEASE DON'T : add version here because they get missed in a release -->
 
@@ -60,21 +67,36 @@
 
     <dependencies>
 
+
         <dependency>
-            <groupId>software.chronicle</groupId>
-            <artifactId>chronicle-services-all</artifactId>
+            <groupId>com.weicoder</groupId>
+            <artifactId>protobuf</artifactId>
+            <version>3.0.0</version>
         </dependency>
 
 
         <dependency>
-            <groupId>software.chronicle</groupId>
-            <artifactId>chronicle-services-api</artifactId>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.12.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.60</version>
+        </dependency>
 
         <dependency>
-            <groupId>software.chronicle.exchange</groupId>
-            <artifactId>oms</artifactId>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.checkerframework.annotatedlib</groupId>
+            <artifactId>guava</artifactId>
+            <version>27.0.1-jre</version>
         </dependency>
 
         <!-- test dependencies -->
@@ -85,49 +107,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.easymock</groupId>
-            <artifactId>easymock</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-
-        <dependency>
-            <groupId>net.openhft</groupId>
-            <artifactId>chronicle-queue</artifactId>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>software.chronicle.exchange</groupId>
-            <artifactId>common</artifactId>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.intellij</groupId>
-            <artifactId>annotations</artifactId>
-        </dependency>
-
-        <!--    <dependency>
-                <groupId>software.chronicle.exchange</groupId>
-                <artifactId>common</artifactId>
-                <type>test-jar</type>
-            </dependency>-->
-
-
-        <dependency>
-            <groupId>net.openhft</groupId>
-            <artifactId>chronicle-map</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>net.openhft</groupId>
-            <artifactId>chronicle-core</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
