@@ -16,8 +16,6 @@
 
 package wallettemplate.controls;
 
-import org.bitcoinj.core.Address;
-import org.bitcoinj.uri.BitcoinURI;
 import de.jensd.fx.fontawesome.AwesomeDude;
 import de.jensd.fx.fontawesome.AwesomeIcon;
 import javafx.beans.binding.StringExpression;
@@ -40,6 +38,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
+import org.bitcoinj.core.Address;
+import org.bitcoinj.uri.BitcoinURI;
 import wallettemplate.Main;
 import wallettemplate.utils.GuiUtils;
 
