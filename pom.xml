@@ -15,9 +15,9 @@
         <additionalparam>-Xdoclint:none</additionalparam>
     </properties>
 
-    <groupId>software.chronicle.bitCoinj</groupId>
-    <artifactId>bitCoinJ</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <groupId>org.bitcoinj</groupId>
+    <artifactId>bitcoinj</artifactId>
+    <version>0.15-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>BitCoinJ</name>
 
@@ -46,76 +46,10 @@
                 <scope>import</scope>
             </dependency>
 
-            <dependency>
-                <groupId>software.chronicle.bitCoinj</groupId>
-                <artifactId>core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.jwebmp.jackson</groupId>
-                <artifactId>jackson-bom</artifactId>
-                <version>0.63.0.19</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <!-- PLEASE DON'T : add version here because they get missed in a release -->
 
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-
-
-        <dependency>
-            <groupId>com.weicoder</groupId>
-            <artifactId>protobuf</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>3.12.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15on</artifactId>
-            <version>1.60</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
-            <version>3.0.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.checkerframework.annotatedlib</groupId>
-            <artifactId>guava</artifactId>
-            <version>27.0.1-jre</version>
-        </dependency>
-
-        <!-- test dependencies -->
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <!--   <scope>test</scope>-->
-        </dependency>
-
-
-    </dependencies>
 
     <repositories>
         <repository>

@@ -48,3 +48,12 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
+
+apply plugin: 'maven'
+
+task createPom {
+    pom {
+        project {
+        }
+    }.writeTo("pom.xml")
+}

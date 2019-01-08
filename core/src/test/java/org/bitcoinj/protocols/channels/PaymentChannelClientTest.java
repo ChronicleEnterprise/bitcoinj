@@ -83,7 +83,7 @@ public class PaymentChannelClientTest {
         maxValue = Coin.COIN;
         serverHash = Sha256Hash.of("serverId".getBytes());
         connection = createMock(IPaymentChannelClient.ClientConnection.class);
-        clientVersionCapture = Capture.newInstance();
+        clientVersionCapture = new Capture<>();
     }
 
     @Test

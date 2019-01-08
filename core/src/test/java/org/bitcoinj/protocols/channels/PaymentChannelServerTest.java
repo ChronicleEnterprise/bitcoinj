@@ -49,7 +49,7 @@ public class PaymentChannelServerTest {
         broadcaster = createMock(TransactionBroadcaster.class);
         wallet = createMock(Wallet.class);
         connection = createMock(PaymentChannelServer.ServerConnection.class);
-        serverVersionCapture = Capture.newInstance();
+        serverVersionCapture = new Capture<>();
         connection.sendToClient(capture(serverVersionCapture));
         Utils.setMockClock();
     }
@@ -69,7 +69,7 @@ public class PaymentChannelServerTest {
     @Test
     public void shouldAcceptDefaultTimeWindow() {
         final TwoWayChannelMessage message = createClientVersionMessage();
-        final Capture<TwoWayChannelMessage> initiateCapture = Capture.newInstance();
+        final Capture<TwoWayChannelMessage> initiateCapture = new Capture<>();
         connection.sendToClient(capture(initiateCapture));
         replay(connection);
 
@@ -88,7 +88,7 @@ public class PaymentChannelServerTest {
         final int minTimeWindow = 20000;
         final int timeWindow = minTimeWindow - 1;
         final TwoWayChannelMessage message = createClientVersionMessage(timeWindow);
-        final Capture<TwoWayChannelMessage> initiateCapture = Capture.newInstance();
+        final Capture<TwoWayChannelMessage> initiateCapture = new Capture<>();
         connection.sendToClient(capture(initiateCapture));
 
         replay(connection);
@@ -116,7 +116,7 @@ public class PaymentChannelServerTest {
         final int maxTimeWindow = 40000;
         final int timeWindow = maxTimeWindow + 1;
         final TwoWayChannelMessage message = createClientVersionMessage(timeWindow);
-        final Capture<TwoWayChannelMessage> initiateCapture = Capture.newInstance();
+        final Capture<TwoWayChannelMessage> initiateCapture = new Capture<>();
         connection.sendToClient(capture(initiateCapture));
         replay(connection);
 
@@ -162,7 +162,7 @@ public class PaymentChannelServerTest {
     @Test
     public void shouldAllowExactTimeWindow() {
         final TwoWayChannelMessage message = createClientVersionMessage();
-        final Capture<TwoWayChannelMessage> initiateCapture = Capture.newInstance();
+        final Capture<TwoWayChannelMessage> initiateCapture = new Capture<>();
         connection.sendToClient(capture(initiateCapture));
         replay(connection);
         final int expire = 24 * 60 * 60 - 60;  // This the default defined in paymentchannel.proto
