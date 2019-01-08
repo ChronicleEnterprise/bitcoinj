@@ -17,7 +17,7 @@
 
     <groupId>org.bitcoinj</groupId>
     <artifactId>bitcoinj</artifactId>
-    <version>0.15-SNAPSHOT</version>
+    <version>0.14.7</version>
     <packaging>pom</packaging>
     <name>BitCoinJ</name>
 

@@ -67,11 +67,16 @@ public abstract class Address extends PrefixedChecksummedBytes {
         }
     }
 
-    /**
-     * Get either the public key hash or script hash that is encoded in the address.
-     * 
-     * @return hash that is encoded in the address
-     */
+    @Deprecated
+    public static Address fromBase58(@Nullable NetworkParameters params, String str)
+            throws AddressFormatException {
+        return fromString(params, str);
+    }
+        /**
+         * Get either the public key hash or script hash that is encoded in the address.
+         *
+         * @return hash that is encoded in the address
+         */
     public abstract byte[] getHash();
 
     /**

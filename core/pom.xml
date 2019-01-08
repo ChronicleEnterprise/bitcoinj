@@ -7,11 +7,11 @@
     <parent>
         <groupId>org.bitcoinj</groupId>
         <artifactId>bitcoinj</artifactId>
-        <version>0.15-SNAPSHOT</version>
+        <version>0.14.7</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>bitcoinj-core</artifactId>
-    <version>0.15-SNAPSHOT</version>
+
     <dependencies>
         <dependency>
             <groupId>org.bouncycastle</groupId>
