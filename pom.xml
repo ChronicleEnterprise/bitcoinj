@@ -45,6 +45,13 @@
                 <version>3.6.7</version>
                 <scope>import</scope>
             </dependency>
+                 
+            <!-- PLEASE DON'T REMOVE - this prevents the chronicle-analytics from being pulled into our enterprise produce -->
+            <dependency>
+                <groupId>net.openhft</groupId>
+                <artifactId>chronicle-analytics</artifactId>
+                <version>0.EMPTY</version>
+            </dependency>
 
             <!-- PLEASE DON'T : add version here because they get missed in a release -->
 
